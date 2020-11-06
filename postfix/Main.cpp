@@ -26,17 +26,13 @@ int getPriority(char symbol) {
 	}
 }
 void main() {
-	//string infixString = "((a-(b+c))*d)^(e+f)";
-	//string infixString = "a+b*c-d/(a+b)";
-	//string infixString = "(a+b)^((a-b/c)/d+r+e)";
-	//string infixString = "a+b/c+t*r*e";
-	string infixString = "(a+b)*(c-d)";
+	string infixString = "";
+	cin >> infixString;
 	string postfixString = "";
 	Stack* stack = new Stack();
 	stack->push('#');
 	for (int i = 0; i < infixString.length(); i++) {
 		char c = infixString[i];
-		cout << "[" << c << "]";
 		int priority = getPriority(c);
 		if (priority == -1) {
 			postfixString += c;
@@ -58,16 +54,13 @@ void main() {
 						postfixString += stack->pop();
 					stack->push(c);
 				}
-		stack->printStack();
-		cout << "(" << postfixString << ")";
-		cout << '\n';
+		
 	}
 	if (stack->head->symbol != '#') {
 		while (stack->head->symbol != '#')
 			postfixString += stack->pop();
 	}
 	cout << postfixString;
-	
-	}
-	
+}
+		
 
